@@ -6,19 +6,13 @@ class Cupcake:
 
     cache = {}
 
-
-
     def __init__(self, name, flavor, price):
         self.name = name 
         self.flavor = flavor
         self.price = price
         self.qty = 0
-        self.cache[name] = self.__repr__()
+        self.cache[name] = self
 
-    def __repr__(self):
-        """Human-readable printout for debugging."""
-
-        return f'<Cupcake name="{self.name}" qty={self.qty}>'
 
     def add_stock(self, amount):
         self.qty += amount
@@ -31,7 +25,11 @@ class Cupcake:
             self.qty = 0
         else:
             self.qty -= amount
+            
+    def __repr__(self):
+        """Human-readable printout for debugging."""
 
+        return(f'<Cupcake name="{self.name}" qty={self.qty}>')
 
     
     @staticmethod
