@@ -6,6 +6,11 @@ class Cupcake:
 
     cache = {}
 
+    def __repr__(self):
+        """Human-readable printout for debugging."""
+
+        return(f'<Cupcake name="{self.name}" qty={self.qty}>')
+
     def __init__(self, name, flavor, price):
         self.name = name 
         self.flavor = flavor
@@ -20,14 +25,12 @@ class Cupcake:
         if self.qty == 0:
             print('Sorry, these cupcakes are sold out')
         elif self.qty - amount < 0:
-            print(f'Sorry, there are only {self.qty} of {self.name} available.')
+            #print(f'Sorry, there are only {self.qty} of {self.name} available.')
+            self.qty = 0
         else:
             self.qty -= amount
 
-    def __repr__(self):
-        """Human-readable printout for debugging."""
 
-        return f'<Cupcake name="{self.name}" qty={self.qty}>'
     
     @staticmethod
     def scale_recipe(ingredients, amount):
@@ -39,6 +42,14 @@ class Cupcake:
             upscaled_ingredients.append(upscaled_ingredient)
 
         return upscaled_ingredients
+
+    @classmethod
+    def get(cls, name):
+        cupcake = Cupcake.cache.get(name)
+        if cupcake != None:
+            return cupcake
+        else:
+            print('Sorry, that cupcake dosn\'t exist')
 
 if __name__ == '__main__':
     import doctest
