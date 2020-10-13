@@ -11,7 +11,7 @@ class Cupcake:
         self.flavor = flavor
         self.price = price
         self.qty = 0
-        self.cache[name] = [self.flavor, self.price, self.qty]
+        self.cache[name] = self.__repr__()
 
     def add_stock(self, amount):
         self.qty += amount
@@ -29,7 +29,16 @@ class Cupcake:
 
         return f'<Cupcake name="{self.name}" qty={self.qty}>'
     
+    @staticmethod
+    def scale_recipe(ingredients, amount):
 
+        upscaled_ingredients = []
+        
+        for i in range(len(ingredients)):
+            upscaled_ingredient = (ingredients[i][0], amount * ingredients[i][1])
+            upscaled_ingredients.append(upscaled_ingredient)
+
+        return upscaled_ingredients
 
 if __name__ == '__main__':
     import doctest
