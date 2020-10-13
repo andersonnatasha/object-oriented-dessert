@@ -6,10 +6,7 @@ class Cupcake:
 
     cache = {}
 
-    def __repr__(self):
-        """Human-readable printout for debugging."""
 
-        return(f'<Cupcake name="{self.name}" qty={self.qty}>')
 
     def __init__(self, name, flavor, price):
         self.name = name 
@@ -17,6 +14,11 @@ class Cupcake:
         self.price = price
         self.qty = 0
         self.cache[name] = self.__repr__()
+
+    def __repr__(self):
+        """Human-readable printout for debugging."""
+
+        return f'<Cupcake name="{self.name}" qty={self.qty}>'
 
     def add_stock(self, amount):
         self.qty += amount
@@ -49,7 +51,7 @@ class Cupcake:
         if cupcake != None:
             return cupcake
         else:
-            print('Sorry, that cupcake dosn\'t exist')
+            print('Sorry, that cupcake doesn\'t exist')
 
 if __name__ == '__main__':
     import doctest
